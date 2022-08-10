@@ -1,0 +1,201 @@
+﻿@page "/"
+@using ActivityCalender.Core
+@using ActivityCalender.Data
+@using Ical.Net.CalendarComponents
+@using System.Globalization
+@using Microsoft.AspNetCore
+@using Microsoft.AspNetCore.Html
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Blazored.LocalStorage
+
+@inject ActivityService ActivityService
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorageService
+
+<PageTitle>Aktivitetskalender</PageTitle>
+
+@if (yearMonthActivities == null)
+{
+    <p><em>Laddar...</em></p>
+}
+else
+{
+    <table width="100%" >
+        <tr style="border:outset" class="border-light bg-opacity-50">
+            <td width="75%">
+                <div class="container" id="selectedActivities" style="width:80%">
+                    <a class="bg-transparent accordion-button" data-toggle="collapse" data-target=#div1 style="align-content:start;font-size:1vW" href="">Välj aktiviteter att visa</a>
+                    <div id=div1 class="collapse">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input class="larger" type="checkbox" id="allOrNothing" name="allOrNothing" value="@this.Vm.SelectAll" checked="@this.Vm.SelectAll" contenteditable="true" onchange=@this.SelectAllOrNothing>
+                                    <label for="allOrNothing">Välj alla eller ingen</label>
+                                </td>
+                            </tr>
+                            @foreach(var vm in this.Vm.ActivityTypes)
+                            {
+                                <tr style="height:1.8vW">
+                                    <td>
+                                        <div class="col-auto" style="">
+                                            <label style="width:4vW;background-color:rgba(@vm.ActivityType.GetBackGroundColor().R, @vm.ActivityType.GetBackGroundColor().G, @vm.ActivityType.GetBackGroundColor().B, @this.Vm.ActivityOpacity);border:groove">
+                                                <input class="larger" type="checkbox" id="@vm.Id" name="@vm.Id" value="@vm.IsIncluded" checked="@vm.IsIncluded" onchange=@vm.Toogle style="margin-left:6%;margin-top:0vW">
+                                            </label>
+                                            <label style="" for="@vm.Id">@vm.Label</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        <tr>
+                            <td>
+                                <label for="numberInput">Antal dagar framåt som ska visas:</label>
+                                <input type="number" id="numberInput" name="numberInput" max="700" style="width:9vW" @bind="@this.Vm.DaysHorizon">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width=100%>
+                                <div>
+                                    <button class="col-auto bg-transparent border-light" type="button" onclick="@this.Filter">
+                                        @if(this.filtering)
+                                        {
+                                            <text>Laddar...</text>
+                                            <span id="mySpinner" class="spinner-border spinner-border-sm" role="status"></span>
+                                        }
+                                        else
+                                        {
+                                            <text>Filtrera</text>
+                                        }
+                                    </button>
+                                    <button class="col-auto bg-transparent border-light" type="button" onclick="@this.Vm.SetDefaults">Spara förval</button>
+                                    <button class="col-auto bg-transparent border-light" type="button" onclick="@this.GetDefaults">Hämta förval och filtrera</button>
+                                    <a href="api/RSSFeed">Rss</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td width="25%" style="min-width:6vW;opacity:0.6">
+                Färgintensitet
+                <input type="range" id="activityOpacity" name="activityOpacity" min="1" max="99" @bind="@this.Vm.ActivityOpacityFactor">
+            </td>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </tr>
+    </table>
+
+    var monthId = 0;
+
+    @foreach (var yearMonthActivity in yearMonthActivities)
+    {
+        var oldWeek = String.Empty;
+        var oldDay = String.Empty;
+        
+        monthId++;
+
+        var activities = yearMonthActivity;
+
+        <div class="bg-gradient" style="border:inset;font-size:2vW;font-weight:bold;opacity:0.7;background-color:navajowhite">
+            @yearMonthActivity.Key
+        </div>
+        
+        <table class="table" width=100%>
+            <thead>
+                <tr>
+                    <th width=3% align="center" style="opacity:0.50">Vecka</th>
+                    <th width=4%>Dag</th>
+                    <th width=18%>Tider</th>
+                    <th width=75%>Aktivitet / Nyhet</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var activity in activities)
+                {
+                    var week = "V" + activity.Week.ToString();
+                    var weekClass = "border-1";
+
+                    if (oldWeek == week)
+                    {
+                        week = String.Empty;
+                        weekClass = "border-0";
+                    }
+                    else
+                    {
+                        oldWeek = week;
+                    }
+
+                    var day = activity.Day;
+                    var dayClass = "border-1";
+                    if(oldDay == day)
+                    {
+                        day = String.Empty;
+                        dayClass = "border-0";
+                    }
+                    else
+                    {
+                        oldDay = day;
+                    }
+
+                    var trBorder = "border:thin";
+                    if(activity.IsToday)
+                    {
+                        trBorder = "border:thick;border:dashed";
+                    }
+
+                    <tr style="@trBorder">
+                        <td style="mask-repeat:no-repeat;opacity:0.50;font-size:2vW" valign="top" align="center" class="@weekClass" >
+                            @week
+                        </td>
+                        <td class="@dayClass">
+                            @day
+                        </td>
+                        <td style="background-color:rgba(@activity.BackGroundColor.R, @activity.BackGroundColor.G, @activity.BackGroundColor.B, @this.Vm.ActivityOpacity);">
+                            @activity.Times
+                            (@activity.ActivityType.GetTranslation())
+                        </td>
+                        <td>
+                            <table width=100%>
+                                <tr style="border:none">
+                                    <td>
+                                        <b>
+                                        @if(activity.CalenderEventLink != null)
+                                        {
+                                           <a href="@activity.CalenderEventLink">@activity.Summary</a>
+                                        }
+                                        else
+                                        {
+                                           <a href="@activity.Uri" target="_blank" >@activity.Summary</a>
+                                        }
+                                        </b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div>@activity.Description</div></td>
+                                </tr>
+                                @if (activity.HasLocation)
+                                {
+                                    <tr>
+                                        <td><b>Plats: </b>
+                                            @if (@activity.GeoLocationLink != null)
+                                            {
+                                                <a href="@activity.GeoLocationLink" target="_blank">Karta</a>
+                                            }
+                                            else
+                                            {
+                                                @activity.Location
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

@@ -1,0 +1,13 @@
+﻿table
+{
+	font-size:1.6vW;
+}
+input#activityOpacity {
+	opacity: 0.5;
+	accent-color: #0026ff;
+}
+input.larger
+{
+	height:1vW;
+	width:3vW;
+}
