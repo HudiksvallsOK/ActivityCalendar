@@ -1,7 +1,7 @@
-﻿using ActivityCalender.Data;
-using ActivityCalender.Pages;
+﻿using ActivityCalendar.Data;
+using ActivityCalendar.Pages;
 
-namespace ActivityCalender.Core
+namespace ActivityCalendar.Core
 {
 	public class AvtivityTypeVmFactory
 	{

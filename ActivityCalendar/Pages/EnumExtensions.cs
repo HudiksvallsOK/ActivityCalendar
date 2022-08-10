@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace ActivityCalender.Pages
+namespace ActivityCalendar.Pages
 {
 	public static class EnumExtensions
 	{

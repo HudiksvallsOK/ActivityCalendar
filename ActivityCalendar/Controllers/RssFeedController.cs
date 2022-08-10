@@ -1,5 +1,5 @@
-﻿using ActivityCalender.Data;
-using ActivityCalender.Pages;
+﻿using ActivityCalendar.Data;
+using ActivityCalendar.Pages;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Mvc;
 using System.ServiceModel.Syndication;
@@ -8,7 +8,7 @@ using System.Xml;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ActivityCalender.Controllers
+namespace ActivityCalendar.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]

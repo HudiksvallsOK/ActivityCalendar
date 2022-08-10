@@ -1,6 +1,6 @@
-﻿using ActivityCalender.Core;
-using ActivityCalender.Data;
-using ActivityCalender.Shared;
+﻿using ActivityCalendar.Core;
+using ActivityCalendar.Data;
+using ActivityCalendar.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Html;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Web.Helpers;
 
-namespace ActivityCalender.Pages
+namespace ActivityCalendar.Pages
 {
 	public partial class Index
 	{

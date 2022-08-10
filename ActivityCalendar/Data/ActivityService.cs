@@ -1,10 +1,10 @@
-using ActivityCalender.Core;
+using ActivityCalendar.Core;
 using Ical.Net.CalendarComponents;
 using SimpleFeedReader;
 using System.Drawing;
 using System.Net;
 
-namespace ActivityCalender.Data
+namespace ActivityCalendar.Data
 {
 	public class ActivityService
 	{

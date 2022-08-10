@@ -1,4 +1,4 @@
-using ActivityCalender.Data;
+using ActivityCalendar.Data;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;

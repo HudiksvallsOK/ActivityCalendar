@@ -1,4 +1,4 @@
-﻿namespace ActivityCalender.Core
+﻿namespace ActivityCalendar.Core
 {
 	public static class DoubleExtensions
 	{

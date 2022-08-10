@@ -1,7 +1,7 @@
-﻿using ActivityCalender.Pages;
+﻿using ActivityCalendar.Pages;
 using System.Drawing;
 
-namespace ActivityCalender.Data
+namespace ActivityCalendar.Data
 {
 	public static class ActivityTypesExtensions
 	{

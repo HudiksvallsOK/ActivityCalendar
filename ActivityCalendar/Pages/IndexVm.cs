@@ -1,9 +1,9 @@
-﻿using ActivityCalender.Core;
+﻿using ActivityCalendar.Core;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ActivityCalender.Pages
+namespace ActivityCalendar.Pages
 {
 	public class IndexVm : PageModel
 	{
