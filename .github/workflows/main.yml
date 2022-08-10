@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
 
 jobs:
   deploy-to-github-pages:
@@ -14,7 +14,7 @@ jobs:
       # uses GitHub's checkout action to checkout code form the master branch
       - uses: actions/checkout@v2
 
-      # sets up .NET Core SDK 3.1
+      # sets up .NET Core SDK 6.0
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
@@ -26,7 +26,7 @@ jobs:
 
       # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
-        run: sed -i 's/<base href="\/" \/>/<base href="\/ActivityCalendar\/" \/>/g' release/Pages/_Layout.cshtml
+        run: sed -i 's/<base href="\/" \/>/<base href="\/ActivityCalendar\/" \/>/g' release/pages/_Layout.cshtml
 
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
