@@ -1,6 +1,6 @@
-﻿using ActivityCalendar.Data;
+﻿using ActivityCalendarCore.Data;
 
-namespace ActivityCalendar.Core
+namespace ActivityCalendarCore.Core
 {
 	public class AvtivityTypeVm
 	{

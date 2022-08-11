@@ -11,8 +11,11 @@
     <PackageReference Include="Ical.Net.NetCore" Version="4.1.11" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.8" />
     <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="SimpleFeedReader" Version="1.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ActivityCalendarWebAssemblyApp\ActivityCalendarWebAssemblyApp.csproj" />
   </ItemGroup>
 
 </Project>

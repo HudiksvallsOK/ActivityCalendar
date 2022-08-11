@@ -1,7 +1,7 @@
-﻿using ActivityCalendar.Data;
-using ActivityCalendar.Pages;
+﻿
+using ActivityCalendarCore.Data;
 
-namespace ActivityCalendar.Core
+namespace ActivityCalendarCore.Core
 {
 	public class AvtivityTypeVmFactory
 	{
@@ -13,7 +13,7 @@ namespace ActivityCalendar.Core
 
 			foreach (ActivityTypes value in typeof(ActivityTypes).GetEnumValues())
 			{
-				if(value == ActivityTypes.Today)
+				if (value == ActivityTypes.Today)
 				{
 					continue;
 				}

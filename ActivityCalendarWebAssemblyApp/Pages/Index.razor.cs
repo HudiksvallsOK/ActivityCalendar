@@ -1,14 +1,7 @@
-﻿using ActivityCalendar.Core;
-using ActivityCalendar.Data;
-using ActivityCalendar.Shared;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using System.Web.Helpers;
+﻿using ActivityCalendar.Pages;
+using ActivityCalendarCore.Core;
 
-namespace ActivityCalendar.Pages
+namespace ActivityCalendarWebAssemblyApp.Pages
 {
 	public partial class Index
 	{
@@ -33,7 +26,7 @@ namespace ActivityCalendar.Pages
 		{
 			var task = base.OnAfterRenderAsync(firstRender);
 
-			if(firstRender)
+			if (firstRender)
 			{
 				return this.GetDefaults();
 			}
@@ -50,7 +43,7 @@ namespace ActivityCalendar.Pages
 
 		public async Task GetDefaults()
 		{
-			if(this.Vm != null)
+			if (this.Vm != null)
 			{
 				await this.Vm.LoadDefaults();
 

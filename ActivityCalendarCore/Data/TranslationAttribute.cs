@@ -1,4 +1,4 @@
-﻿namespace ActivityCalendar.Data
+﻿namespace ActivityCalendarCore.Data
 {
 	[AttributeUsage(AttributeTargets.All)]
 	public class TranslationAttribute : Attribute

@@ -1,18 +1,22 @@
 ﻿@page "/"
-@using ActivityCalendar.Core
-@using ActivityCalendar.Data
+@using ActivityCalendarCore.Data
 @using Ical.Net.CalendarComponents
 @using System.Globalization
 @using Microsoft.AspNetCore
-@using Microsoft.AspNetCore.Html
-@using Microsoft.AspNetCore.Mvc;
-@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @using Blazored.LocalStorage
+@using System.Runtime.InteropServices
 
 @inject ActivityService ActivityService
 @inject Blazored.LocalStorage.ILocalStorageService LocalStorageService
 
 <PageTitle>Aktivitetskalender</PageTitle>
+
+@code
+{
+  string Environment = RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER")) // was "WEBASSEMBLY"
+  ? "WebAssembly" 
+  : "Server";
+}
 
 @if (yearMonthActivities == null)
 {
@@ -20,6 +24,8 @@
 }
 else
 {
+    <p>Env: @Environment</p>
+
     <table width="100%" >
         <tr style="border:outset" class="border-light bg-opacity-50">
             <td width="75%">

@@ -1,4 +1,4 @@
-﻿namespace ActivityCalendar.Data
+﻿namespace ActivityCalendarCore.Data
 {
 	public enum ActivityTypes
 	{

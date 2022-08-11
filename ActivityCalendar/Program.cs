@@ -1,7 +1,5 @@
-using ActivityCalendar.Data;
+using ActivityCalendarCore.Data;
 using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 

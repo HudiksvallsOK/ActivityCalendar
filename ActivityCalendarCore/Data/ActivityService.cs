@@ -1,10 +1,8 @@
-using ActivityCalendar.Core;
-using Ical.Net.CalendarComponents;
+using ActivityCalendarCore.Core;
 using SimpleFeedReader;
-using System.Drawing;
 using System.Net;
 
-namespace ActivityCalendar.Data
+namespace ActivityCalendarCore.Data
 {
 	public class ActivityService
 	{
@@ -18,7 +16,7 @@ namespace ActivityCalendar.Data
 			)
 		{
 			var fromDate = DateTime.Now.AddDays(-10);
-			if(daysHorizon == 0)
+			if (daysHorizon == 0)
 			{
 				daysHorizon = 100;
 			}
@@ -53,7 +51,7 @@ namespace ActivityCalendar.Data
 					}
 				}
 
-				if(!activities.Any())
+				if (!activities.Any())
 				{
 					activities.Add(Activity.Empty);
 				}
@@ -76,7 +74,7 @@ namespace ActivityCalendar.Data
 			var date = activities.First().Key.AddDays(1);
 			var lastDate = activities.Last().Key;
 
-			while(date < lastDate)
+			while (date < lastDate)
 			{
 				if (!activities.ContainsKey(date))
 				{
@@ -99,7 +97,7 @@ namespace ActivityCalendar.Data
 
 				date = date.AddDays(1);
 			}
-			
+
 		}
 
 		private static IEnumerable<Activity> LoadCalendar(DateTime fromDate
@@ -131,7 +129,7 @@ namespace ActivityCalendar.Data
 			var webSites = new Dictionary<ActivityTypes, string>();
 			var filteredActivityTypes = new HashSet<ActivityTypes>();
 
-			foreach (ActivityTypes activityType in activityTypes)
+			foreach (var activityType in activityTypes)
 			{
 				switch (activityType)
 				{
@@ -175,9 +173,9 @@ namespace ActivityCalendar.Data
 		{
 			try
 			{
-				using (HttpResponseMessage response = webClient.GetAsync(webSite).Result)
+				using (var response = webClient.GetAsync(webSite).Result)
 				{
-					using (HttpContent content = response.Content)
+					using (var content = response.Content)
 					{
 						var html = content.ReadAsStringAsync().Result;
 

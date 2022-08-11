@@ -1,10 +1,10 @@
-﻿using ActivityCalendar.Data;
+﻿using ActivityCalendarCore.Data;
 using Ical.Net.CalendarComponents;
 using SimpleFeedReader;
 using System.Drawing;
 using System.Globalization;
 
-namespace ActivityCalendar.Core
+namespace ActivityCalendarCore.Core
 {
 	public class Activity
 	{
@@ -90,7 +90,7 @@ namespace ActivityCalendar.Core
 			{
 				var lastSegment = this.Uri?.Segments.Last();
 
-				if(long.TryParse(lastSegment, out var id2))
+				if (long.TryParse(lastSegment, out var id2))
 				{
 					return this.CalendarDateTime.Date.Date.ToShortDateString() + ":" + lastSegment;
 				}
@@ -101,7 +101,7 @@ namespace ActivityCalendar.Core
 
 		private string GetActivityTimes()
 		{
-			var times = String.Empty;
+			var times = string.Empty;
 
 			if (this.CalendarEvent == null)
 			{

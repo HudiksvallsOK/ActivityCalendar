@@ -1,4 +1,4 @@
-﻿using ActivityCalendar.Core;
+﻿using ActivityCalendarCore.Core;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

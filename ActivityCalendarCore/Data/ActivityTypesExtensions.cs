@@ -1,7 +1,7 @@
-﻿using ActivityCalendar.Pages;
+﻿using ActivityCalendarCore.Core;
 using System.Drawing;
 
-namespace ActivityCalendar.Data
+namespace ActivityCalendarCore.Data
 {
 	public static class ActivityTypesExtensions
 	{
@@ -12,7 +12,7 @@ namespace ActivityCalendar.Data
 
 		public static bool IsRss(this ActivityTypes activityType)
 		{
-			return activityType == ActivityTypes.NewsOrientation 
+			return activityType == ActivityTypes.NewsOrientation
 				|| activityType == ActivityTypes.NewsRF
 				|| activityType == ActivityTypes.NewsHOK
 				;
