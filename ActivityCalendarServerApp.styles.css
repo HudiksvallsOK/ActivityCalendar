@@ -1,0 +1,85 @@
+/* _content/ActivityCalendarServerApp/Pages/Index.razor.rz.scp.css */
+table[b-7uq2vg99ec]
+{
+	font-size:1.6vW;
+}
+input#activityOpacity[b-7uq2vg99ec] {
+	opacity: 0.5;
+	accent-color: #0026ff;
+}
+input.larger[b-7uq2vg99ec]
+{
+	height:1vW;
+	width:3vW;
+}
+/* _content/ActivityCalendarServerApp/Shared/MainLayout.razor.rz.scp.css */
+.page[b-lngcycasdc] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-lngcycasdc] {
+    flex: 1;
+}
+
+.sidebar[b-lngcycasdc] {
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}
+
+.top-row[b-lngcycasdc] {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-lngcycasdc]  a, .top-row .btn-link[b-lngcycasdc] {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+    }
+
+    .top-row a:first-child[b-lngcycasdc] {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row:not(.auth)[b-lngcycasdc] {
+        display: none;
+    }
+
+    .top-row.auth[b-lngcycasdc] {
+        justify-content: space-between;
+    }
+
+    .top-row a[b-lngcycasdc], .top-row .btn-link[b-lngcycasdc] {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-lngcycasdc] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-lngcycasdc] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-lngcycasdc] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row[b-lngcycasdc], article[b-lngcycasdc] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
